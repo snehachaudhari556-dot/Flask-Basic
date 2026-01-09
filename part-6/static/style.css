@@ -1,10 +1,11 @@
+/* ================== BODY ================== */
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     background-color: #f2f6f9;
 }
 
-/* NAVBAR */
+/* ================== NAVBAR ================== */
 .navbar {
     background-color: #f8a5c2;
     padding: 15px 0;
@@ -35,14 +36,14 @@ body {
     text-decoration: underline;
 }
 
-/* MAIN CONTAINER */
+/* ================== MAIN CONTAINER ================== */
 .container {
     max-width: 900px;
     margin: 30px auto;
     padding: 0 20px;
 }
 
-/* CARDS */
+/* ================== CARDS ================== */
 .card {
     background: white;
     padding: 20px;
@@ -55,7 +56,7 @@ body {
     border-left: 5px solid #5bb1c9;
 }
 
-/* BUTTON */
+/* ================== BUTTON ================== */
 .btn {
     display: inline-block;
     margin-top: 10px;
@@ -64,9 +65,14 @@ body {
     padding: 10px 14px;
     border-radius: 6px;
     text-decoration: none;
+    cursor: pointer;
 }
 
-/* TASK CARD */
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* ================== TASK CARD ================== */
 .task-card {
     border: 1px solid #e2e6ea;
     border-radius: 8px;
@@ -77,7 +83,7 @@ body {
     align-items: center;
 }
 
-/* BADGES */
+/* ================== BADGES ================== */
 .badge {
     padding: 5px 10px;
     border-radius: 12px;
@@ -89,18 +95,78 @@ body {
 .progress  { background-color: #3498db; }
 .pending   { background-color: #f39c12; }
 
-/* ACTIONS */
+/* ================== ACTIONS ================== */
 .task-actions a {
     margin-left: 10px;
     text-decoration: none;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .task-actions .delete {
     color: #e74c3c;
 }
 
-/* MOBILE */
+/* ================== FORM CARD ================== */
+.form-card {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* ================== FORM FIELDS ================== */
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;   /* space between fields */
+}
+
+.task-form label {
+    font-weight: 600;
+}
+
+/* Default input/select style for Add/Edit form */
+.task-form input,
+.task-form select {
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+    outline: none;
+    -webkit-appearance: none;  /* remove default browser styles */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Remove blue highlight and shadow on focus */
+.task-form input:focus,
+.task-form select:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: white;
+}
+
+/* Plain-input class (optional, can be used for edit fields) */
+.plain-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.plain-input:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: white;
+}
+
+/* ================== MOBILE RESPONSIVE ================== */
 @media (max-width: 600px) {
     .nav-container {
         flex-direction: column;
@@ -112,31 +178,9 @@ body {
         align-items: flex-start;
         gap: 10px;
     }
-}
-/* FORM SPACING */
-.form-card {
-    max-width: 500px;
-    margin: 30px auto;
-}
 
-.task-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;   /* 🔥 This increases spacing */
-}
-
-.task-form label {
-    font-weight: 600;
-}
-
-.task-form input,
-.task-form select {
-    padding: 12px;
-    font-size: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-.task-form button {
-    margin-top: 10px;
+    .form-card {
+        margin: 20px 10px;
+        padding: 15px;
+    }
 }
