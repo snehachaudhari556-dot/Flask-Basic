@@ -3,6 +3,8 @@
 {% block title %}About | {{ info.name }}{% endblock %}
 
 {% block content %}
+
+<!-- About Me -->
 <div class="card">
     <h2>About Me</h2>
     <p style="font-size: 18px; margin-bottom: 20px;">{{ info.bio }}</p>
@@ -16,27 +18,34 @@
 <!-- Skills Section -->
 <div class="card">
     <h2>My Skills</h2>
-    <p style="margin-bottom: 20px;">Here are my technical skills with proficiency levels:</p>
+    <p style="margin-bottom: 20px;">
+        Click on any skill to see projects I have done using it:
+    </p>
 
     {% for skill in skills %}
-    <div class="skill-item">
-        <div class="skill-name">
-            <span>{{ skill.name }}</span>
-            <span>{{ skill.level }}%</span>
+    <a href="{{ url_for('skill_projects', skill_name=skill.name) }}" class="skill-link">
+        <div class="skill-item">
+            <div class="skill-name">
+                <span>{{ skill.name }}</span>
+                <span>{{ skill.level }}%</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: {{ skill.level }}%;"></div>
+            </div>
         </div>
-        <div class="skill-bar">
-            <div class="skill-progress" style="width: {{ skill.level }}%;"></div>
-        </div>
-    </div>
+    </a>
     {% endfor %}
 
     <div class="info-box" style="margin-top: 20px;">
         <strong>For Loop Magic:</strong>
         <p>The skills above are rendered using a Jinja2 for loop:</p>
         <code style="display: block; margin-top: 10px; background: #edf2f7; padding: 10px; border-radius: 5px;">
-            {&percnt; for skill in skills &percnt;}<br>
-            &nbsp;&nbsp;{{ skill.name }} - {{ skill.level }}&percnt;<br>
-            {&percnt; endfor &percnt;}
+            {% raw %}
+{% for skill in skills %}
+{{ skill.name }} - {{ skill.level }}%
+{% endfor %}
+            {% endraw %}
         </code>
     </div>
 </div>
@@ -50,6 +59,8 @@
         <li>Database management with SQL</li>
         <li>Version control with Git</li>
         <li>RESTful API design</li>
+        <li>C, C++ Programming</li>
     </ul>
 </div>
+
 {% endblock %}

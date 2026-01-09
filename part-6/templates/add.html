@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card form-card">
+    <h2>Add New Task</h2>
+
+    <form method="POST" class="task-form">
+
+        <label>Title</label>
+        <input type="text" name="title" placeholder="Enter task title" required>
+
+        <label>Status</label>
+        <select name="status">
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+
+        <label>Priority</label>
+        <select name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select>
+
+        <button type="submit" class="btn">Add Task</button>
+
+    </form>
+</div>
+
+{% endblock %}

@@ -19,6 +19,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         h1 { color: #2d3748; }
+        h2 { color: #2d3748; margin-top: 30px; }
         nav {
             margin-bottom: 20px;
             padding: 10px;
@@ -31,6 +32,7 @@
             text-decoration: none;
             font-weight: bold;
         }
+        nav a:hover { color: #2b6cb0; }
         code {
             background: #edf2f7;
             padding: 2px 6px;
@@ -63,10 +65,10 @@
             <a href="/">Home</a>
             <a href="/about/">About</a>
             <a href="/links">URL Builder</a>
+            <a href="/product">Products</a>
         </nav>
 
         <h1>About Dynamic Routes</h1>
-
         <p>Dynamic routes allow you to capture parts of the URL and use them as variables in your Python functions.</p>
 
         <h2>URL Parameter Types</h2>
@@ -109,7 +111,7 @@
             <li><strong>User profiles:</strong> <code>/user/&lt;username&gt;</code></li>
             <li><strong>Blog posts:</strong> <code>/post/&lt;int:id&gt;</code></li>
             <li><strong>Product pages:</strong> <code>/product/&lt;int:product_id&gt;</code></li>
-            <li><strong>Categories:</strong> <code>/category/&lt;name&gt;</code></li>
+            <li><strong>Categories:</strong> <code>/category/&lt;name&gt;/product/&lt;id&gt;</code></li>
         </ul>
 
         <p><a href="/">Back to Home</a></p>

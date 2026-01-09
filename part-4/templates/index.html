@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Routes - Flask</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +20,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         h1 { color: #2d3748; }
+
         nav {
             margin-bottom: 20px;
             padding: 10px;
@@ -32,6 +34,7 @@
             font-weight: bold;
         }
         nav a:hover { color: #2b6cb0; }
+
         .route-demo {
             background: #ebf8ff;
             border: 2px solid #90cdf4;
@@ -52,15 +55,15 @@
             text-decoration: none;
             border-radius: 5px;
         }
-        .route-demo a:hover {
-            background: #3182ce;
-        }
+        .route-demo a:hover { background: #3182ce; }
+
         code {
             background: #edf2f7;
             padding: 2px 6px;
             border-radius: 3px;
             font-family: monospace;
         }
+
         .code-block {
             background: #2d3748;
             color: #e2e8f0;
@@ -69,74 +72,133 @@
             font-family: monospace;
             margin: 10px 0;
         }
+
         .try-it {
             background: #f0fff4;
             border-left: 4px solid #48bb78;
             padding: 15px;
             margin: 15px 0;
         }
+
+        .product-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .not-found {
+            background: #fed7d7;
+            border: 1px solid #fc8181;
+            color: #c53030;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/links">URL Builder</a>
-        </nav>
+<div class="container">
 
-        <h1>Dynamic Routes in Flask</h1>
-        <p>Learn how to capture values from URLs using <code>&lt;variable&gt;</code> syntax!</p>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('show_links') }}">URL Builder</a>
+        <a href="{{ url_for('product_page', product_id=1) }}">Products</a>
+    </nav>
 
-        <!-- User Profile Demo -->
-        <div class="route-demo">
-            <h3>1. User Profile Route</h3>
-            <p>Route: <code>/user/&lt;username&gt;</code></p>
-            <div class="code-block">
-                @app.route('/user/&lt;username&gt;')<br>
-                def user_profile(username):<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return render_template('user.html', username=username)
-            </div>
-            <p><strong>Try it:</strong></p>
-            <a href="/user/Alice">Alice</a>
-            <a href="/user/Bob">Bob</a>
-            <a href="/user/Charlie">Charlie</a>
-        </div>
+    
+    <h1>Dynamic Routes in Flask</h1>
+    <p>Learn how to capture values from URLs using <code>&lt;variable&gt;</code> syntax!</p>
+     
+    <!-- SEARCH FORM (TOP) -->
+    <div class="route-demo">
+        <h3>Search</h3>
 
-        <!-- Post Demo -->
-        <div class="route-demo">
-            <h3>2. Post Route (Integer Parameter)</h3>
-            <p>Route: <code>/post/&lt;int:post_id&gt;</code></p>
-            <div class="code-block">
-                @app.route('/post/&lt;int:post_id&gt;')<br>
-                def show_post(post_id):<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return render_template('post.html', post_id=post_id)
-            </div>
-            <p><strong>Try it:</strong></p>
-            <a href="/post/1">Post 1</a>
-            <a href="/post/2">Post 2</a>
-            <a href="/post/3">Post 3</a>
-            <a href="/post/99">Post 99 (Not Found)</a>
-        </div>
+        <form method="post">
+            <input type="text" name="query" placeholder="Enter search text" required
+                   style="padding:8px; width:60%;">
+            <button type="submit" style="padding:8px 15px;">Search</button>
+        </form>
 
-        <!-- Multiple Parameters Demo -->
-        <div class="route-demo">
-            <h3>3. Multiple Parameters</h3>
-            <p>Route: <code>/user/&lt;username&gt;/post/&lt;int:post_id&gt;</code></p>
-            <p><strong>Try it:</strong></p>
-            <a href="/user/Alice/post/1">Alice's Post 1</a>
-            <a href="/user/Bob/post/2">Bob's Post 2</a>
-        </div>
-
-        <div class="try-it">
-            <strong>Try Your Own!</strong>
-            <p>Type in your browser's address bar:</p>
-            <ul>
-                <li><code>localhost:5000/user/YourName</code></li>
-                <li><code>localhost:5000/post/42</code></li>
-                <li><code>localhost:5000/user/YourName/post/1</code></li>
-            </ul>
-        </div>
+        {% if search_query %}
+            <p style="margin-top:15px;">
+                <strong>Search results for:</strong> {{ search_query }}
+            </p>
+        {% endif %}
     </div>
+
+    <!-- 1. USER PROFILE -->
+    <div class="route-demo">
+        <h3>1. User Profile Route</h3>
+        <p>Route: <code>/user/&lt;username&gt;</code></p>
+        <div class="code-block">
+            @app.route('/user/&lt;username&gt;')<br>
+            def user_profile(username):
+        </div>
+        <p><strong>Try it:</strong></p>
+        <a href="/user/Alice">Alice</a>
+        <a href="/user/Bob">Bob</a>
+        <a href="/user/Charlie">Charlie</a>
+    </div>
+
+    <!-- 2. POST ROUTE -->
+    <div class="route-demo">
+        <h3>2. Post Route</h3>
+        <p>Route: <code>/post/&lt;int:post_id&gt;</code></p>
+        <p><strong>Try it:</strong></p>
+        <a href="/post/1">Post 1</a>
+        <a href="/post/2">Post 2</a>
+        <a href="/post/3">Post 3</a>
+        <a href="/post/99">Post 99</a>
+    </div>
+
+    <!-- 3. MULTIPLE PARAMS -->
+    <div class="route-demo">
+        <h3>3. Multiple Parameters</h3>
+        <a href="/user/Alice/post/1">Alice's Post 1</a>
+        <a href="/user/Bob/post/2">Bob's Post 2</a>
+    </div>
+
+    <!-- 4. CATEGORY + PRODUCT -->
+    {% if show_category_product %}
+    <div class="route-demo">
+        <h3>4. Category + Product</h3>
+
+        {% if product %}
+            <div class="product-card">
+                <h2>{{ product.name }}</h2>
+                <p><strong>Price:</strong> ₹{{ product.price }}</p>
+                <p><strong>Product ID:</strong> {{ product_id }}</p>
+                <p><strong>Category:</strong> {{ category_name | title }}</p>
+            </div>
+
+            <div class="info-box">
+                Opened using:
+                <code>/category/{{ category_name }}/product/{{ product_id }}</code>
+            </div>
+        {% else %}
+            <div class="not-found">
+                Product not found
+            </div>
+        {% endif %}
+
+        <p><strong>Try it:</strong></p>
+        <a href="/category/electronics/product/1">Electronics - Laptop</a>
+        <a href="/category/electronics/product/2">Electronics - Mobile</a>
+        <a href="/category/accessories/product/3">Accessories - Headphones</a>
+    </div>
+    {% endif %}
+
+</div>
 </body>
 </html>

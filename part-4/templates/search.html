@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .search-box {
+            background: #ebf8ff;
+            border: 2px solid #90cdf4;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .search-box h2 {
+            margin-top: 0;
+            color: #2b6cb0;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #cbd5e0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 18px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #3182ce;
+        }
+        .result-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/product/1">Products</a>
+    </nav>
+
+    <div class="search-box">
+        <h2>Search</h2>
+        <p>Enter a keyword to search</p>
+
+        <form action="/search" method="post">
+            <input type="text" name="query" placeholder="Enter search text" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if query is defined %}
+        <div class="result-box">
+            <h3>Search Results</h3>
+            <p>Search results for: <strong>{{ query }}</strong></p>
+            <p>Route used: <code>/search/{{ query }}</code></p>
+        </div>
+    {% endif %}
+
+</div>
+</body>
+</html>

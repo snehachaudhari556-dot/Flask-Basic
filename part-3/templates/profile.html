@@ -81,6 +81,7 @@
             <a href="/profile">Profile</a>
             <a href="/skills">Skills</a>
             <a href="/projects">Projects</a>
+            <a href="/grades">Grades</a> <!-- Added for Exercise 3.3 -->
         </nav>
 
         <h1>User Profile</h1>
@@ -96,8 +97,18 @@
                 <span>Course:</span> {{ course }}
             </div>
             <div class="profile-item">
+                <span>Email:</span> {{ email }}
+            </div>
+            <div class="profile-item">
+                <span>City:</span> {{ city }}
+            </div>
+            <div class="profile-item">
+                <span>Phone:</span> {{ phone }}
+            </div>
+            <div class="profile-item">
                 <span>Status:</span>
-                <!-- Using Jinja2 conditional (if/else) -->
+                <!---------exercise 3.2--------->
+                <!-- Using Jinja2 conditional (if/else) --> 
                 {% if is_enrolled %}
                     <span class="badge badge-success">Enrolled</span>
                 {% else %}
@@ -111,10 +122,13 @@
 
         <div class="code-example">
 return render_template('profile.html',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;name='Sarah',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;age=22,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name='Sneha',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;age=20,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;course='Web Development',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;is_enrolled=True)
+&nbsp;&nbsp;&nbsp;&nbsp;is_enrolled=True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;email='snehachaudhari556@gmail.com',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;city='Nashik',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;phone='+91 9876543210')
         </div>
 
         <h2>Jinja2 Conditionals</h2>

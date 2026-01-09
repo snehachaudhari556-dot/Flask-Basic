@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card welcome-card">
+    <h2>👋 Welcome to Your To-Do App</h2>
+    <p>This app helps you organize your daily work efficiently.</p>
+</div>
+
+<div class="card">
+    <h3>📋 Your Tasks</h3>
+
+    {% for task in tasks %}
+    <div class="task-card">
+        <div>
+            <strong>{{ task.title }}</strong>
+            <p>Priority: {{ task.priority }}</p>
+
+            {% if task.status == 'Completed' %}
+                <span class="badge completed">Completed</span>
+            {% elif task.status == 'In Progress' %}
+                <span class="badge progress">In Progress</span>
+            {% else %}
+                <span class="badge pending">Pending</span>
+            {% endif %}
+        </div>
+
+        <div class="task-actions">
+            <a href="{{ url_for('task_detail', id=task.id) }}">View</a>
+            <a class="delete"
+               href="{{ url_for('delete_task', id=task.id) }}"
+               onclick="return confirm('Delete this task?')">
+               Delete
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
